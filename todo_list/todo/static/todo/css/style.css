@@ -1,0 +1,195 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body styling */
+body {
+    background: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar button {
+    background-color: #fff;
+    color: #4CAF50;
+    border: none;
+    padding: 10px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar button:hover {
+    background-color: #ddd;
+}
+
+/* Main container */
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.todo-app {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 700px;
+}
+
+/* Todo heading */
+.todo-logo h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo-logo img {
+    vertical-align: middle;
+}
+
+/* Input and add button */
+.input {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.input input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px 0 0 6px;
+    font-size: 16px;
+}
+
+.input button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 6px 6px 0;
+    transition: background-color 0.3s ease;
+}
+
+.input button:hover {
+    background-color: #45a049;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+thead th {
+    padding: 12px;
+    text-align: left;
+}
+
+tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Action buttons */
+td span a {
+    margin-right: 10px;
+    color: #555;
+    font-size: 18px;
+    transition: color 0.2s ease;
+}
+
+#span1 a:hover {
+    color: #2196F3; /* Edit icon */
+}
+
+#span2 a:hover {
+    color: #f44336; /* Delete icon */
+}
+
+#span3 a:hover {
+    color: #4CAF50; /* Complete icon */
+}
+
+/* Status badges */
+td:nth-child(3) {
+    font-weight: bold;
+    color: #888;
+}
+
+td:nth-child(3):contains("Completed") {
+    color: green;
+}
+
+td:nth-child(3):contains("in progress") {
+    color: orange;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .input {
+        flex-direction: column;
+    }
+
+    .input input, .input button {
+        width: 100%;
+        border-radius: 6px;
+    }
+
+    .input button {
+        margin-top: 10px;
+        border-radius: 6px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody td {
+        position: relative;
+        padding-left: 50%;
+    }
+
+    tbody td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        top: 10px;
+        font-weight: bold;
+    }
+}

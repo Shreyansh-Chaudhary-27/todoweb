@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update-Todo</title>
+    <link rel="stylesheet" href="{% static 'todo/css/up_date.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">📋 Todo</div>
+    <a href="{% url 'logout_view' %}">
+        <button type="submit">Logout</button>
+    </a>
+</nav>
+
+{% if messages %}
+{% for message in messages %}
+<h4 style="color: red">{{message}}</h4>
+{% endfor %}
+{% endif %}
+
+<h2>Update Your Todo</h2>
+<form method="post">
+    {% csrf_token%}
+    <label for="task">Task:</label>
+    <input type="text" id="task" name="task" value="{{todo.task}}">
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

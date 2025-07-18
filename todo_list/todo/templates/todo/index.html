@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{% static 'todo/css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">📋 Todo</div>
+    <a href="{% url 'logout_view' %}">
+        <button type="submit">Logout</button>
+    </a>
+</nav>
+
+<div class="container">
+    <div class="todo-app">
+        <div class="todo-logo">
+            <h2>To-Do List
+                <img src="{% static 'todo/Images/Todo.png' %}" height="50" alt="todo-list.png">
+            </h2>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="input">
+                <input type="text" id="input-box" name="task" placeholder="Add your task">
+                <button type="submit">Add</button>
+            </div>
+        </form>
+        <table>
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Task</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for todo in all_todo %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{todo.task}}</td>
+
+                {% if todo.status == True %}
+                <td>Completed</td>
+                {% else %}
+                <td>in progress</td>
+                {% endif %}
+
+                <td>
+                    <span id="span1"><a href="{% url 'update_todo' todo.id %}"><i class="fa-solid fa-pen-to-square"></i></a></span>
+                    <span id="span2"><a href="{% url 'delete_todo' todo.id %}"><i
+                            class="fa-solid fa-trash"></i></a></span>
+                    <span id="span3"><a href="{% url 'complete_todo' todo.id %}"><i
+                            class="fa-solid fa-check"></i></a></span>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
